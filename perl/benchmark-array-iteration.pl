@@ -4,6 +4,15 @@ my @arr = (1 .. 10003);
 
 =head
 
+Conclusions:
+ - map_baseline is consistently faster than for_baseline, which is strange since a for-loop is guaranteed void context
+ - it is worth caching the length of the array if iterating via the index (true in all languages)
+ - for-loop range iteration is significantly more efficient than map range iterations, likely due to array expansion in the map case
+
+=cut
+
+=head
+
 perl benchmark-array-iteration.pl 
                        Rate map_range for_index for_index_cache_size for_range for_baseline map_baseline
 map_range             628/s        --      -15%                 -31%      -32%         -58%         -62%

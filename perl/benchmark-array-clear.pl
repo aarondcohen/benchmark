@@ -3,6 +3,15 @@ use Benchmark qw{:all};
 my @arr = (1 .. 10003);
 
 =head
+Conclusions:
+ - clear_empty_resize is the clear winner
+ - mapping undef to reconstruct an array of the same size is grossly inefficient
+ - assigning and array to undef is less efficient than undefing an array (test with a further benchmark)
+ - resizing is more efficient that assigning to the last index of an array (probably due to autovivification)
+=cut
+
+=head
+
 perl benchmark-array-clear.pl
                              Rate clear_map_undef clear_assign_undef_assign clear_empty_assign clear_assign_undef_resize clear_undef_resize clear_undef_assign clear_empty_resize
 clear_map_undef            1678/s              --                      -78%               -78%                      -78%               -80%               -80%               -90%

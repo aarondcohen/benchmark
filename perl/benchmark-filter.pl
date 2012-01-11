@@ -5,6 +5,15 @@ my @arr = map { $_ % 3 ? $_ : undef } 1 .. 1003;
 
 =head
 
+Conclusions:
+ - grep wins as expected when simply filtering an array
+ - folding the filter into the map is a surprising winner over the pipeline approach (probably due to repeat iteration)
+ - pushing each value onto the list is twice as slow
+
+=cut
+
+=head
+
 perl benchmark-filter.pl 100000
 
                    Rate filter_for_next filter_for_if    filter_map  filter_grep
